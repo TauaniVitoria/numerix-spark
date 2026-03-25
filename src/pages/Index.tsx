@@ -1,16 +1,22 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import SidebarNav, { Section } from '@/components/SidebarNav';
+import RootFinder from '@/components/RootFinder';
+import LinearSystemSolver from '@/components/LinearSystemSolver';
+import CurveFitter from '@/components/CurveFitter';
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const [section, setSection] = useState<Section>('roots');
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen bg-background">
+      <SidebarNav active={section} onSelect={setSection} />
+      <main className="md:ml-64 p-6 md:p-8 pt-16 md:pt-8 max-w-4xl">
+        {section === 'roots' && <RootFinder />}
+        {section === 'linear' && <LinearSystemSolver />}
+        {section === 'curve' && <CurveFitter />}
+      </main>
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
